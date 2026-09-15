@@ -1,0 +1,10 @@
+import { useState } from "react"
+import { Mail, ShieldCheck, Sparkles } from "lucide-react"
+import { Card, Input, SectionTitle, Textarea, Button } from "@/components/ui"
+import { toast } from "sonner"
+
+export function AboutPage(){return <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6"><SectionTitle eyebrow="About" title="A calmer way to become consistent." description="Habit Tracker 2.0 combines a simple daily system with deeper analytics and an optional AI copilot."/><div className="grid gap-5 md:grid-cols-3">{[
+["Track","Recurring habits live in one dependable system."],["Understand","Analytics turn completion history into patterns."],["Improve","AI turns those patterns into practical next steps."]
+].map(([a,b])=><Card className="p-7" key={a}><Sparkles className="text-accent"/><h2 className="mt-4 text-xl font-black">{a}</h2><p className="mt-2 text-muted">{b}</p></Card>)}</div></div>}
+
+export function ContactPage(){const[form,setForm]=useState({name:"",email:"",subject:"",message:""});return <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6"><SectionTitle eyebrow="Support" title="Contact us" description="Have a product question, payment issue or suggestion? Send us a message."/><Card className="p-7"><form onSubmit={e=>{e.preventDefault();toast.success("Message captured. Connect your production email/CRM before launch.");}} className="space-y-4"><Input placeholder="Name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} required/><Input type="email" placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} required/><Input placeholder="Subject" value={form.subject} onChange={e=>setForm({...form,subject:e.target.value})} required/><Textarea placeholder="How can we help?" value={form.message} onChange={e=>setForm({...form,message:e.target.value})} required/><Button size="lg"><Mail/>Send message</Button></form></Card><div className="mt-5 flex gap-3 rounded-2xl border border-white/8 bg-white/[.03] p-5 text-sm text-muted"><ShieldCheck className="shrink-0 text-accent"/>For the commercial launch, connect this form to your verified support email or helpdesk.</div></div>}
